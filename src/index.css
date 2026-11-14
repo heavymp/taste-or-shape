@@ -418,3 +418,79 @@ body::before {
     animation: none;
   }
 }
+
+.why-gay-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: max(1rem, var(--safe-top)) max(1rem, var(--safe-right)) max(1rem, var(--safe-bottom))
+    max(1rem, var(--safe-left));
+  background: rgba(26, 18, 8, 0.72);
+}
+
+.why-gay-card {
+  width: min(100%, 26rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 1.1rem;
+  border: 3px solid var(--ink);
+  border-radius: 1rem;
+  background: var(--cream);
+  box-shadow: 8px 8px 0 var(--ink);
+}
+
+.why-gay-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 3px solid var(--ink);
+  border-radius: 0.75rem;
+  background: var(--grill);
+}
+
+.why-gay-title {
+  margin: 0;
+  font-family: 'Bangers', cursive;
+  letter-spacing: 0.04em;
+  font-size: clamp(1.85rem, 7vw, 2.6rem);
+  color: var(--ketchup);
+  text-align: center;
+}
+
+.why-gay-sub {
+  margin: 0;
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--grill);
+}
+
+.why-gay-btn {
+  min-height: 64px;
+  width: 100%;
+  border: 3px solid var(--ink);
+  border-radius: 1rem;
+  background: var(--mustard);
+  color: var(--ink);
+  font-size: 1.35rem;
+  font-weight: 800;
+  box-shadow: 4px 4px 0 var(--ink);
+  cursor: pointer;
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease;
+}
+
+.why-gay-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.why-gay-btn:active {
+  transform: translateY(2px);
+  box-shadow: 2px 2px 0 var(--ink);
+}

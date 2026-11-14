@@ -3,12 +3,17 @@ import { foods, reasonFor, tallyReasons, type Reason } from './foods'
 
 type Step = 'intro' | 'reveal' | 'summary'
 
+function isDarragh(value: string) {
+  return value.trim().toLowerCase() === 'darragh'
+}
+
 export default function App() {
   const [step, setStep] = useState<Step>('intro')
   const [name, setName] = useState('')
   const [draft, setDraft] = useState('')
   const [index, setIndex] = useState(0)
   const [error, setError] = useState('')
+  const [whyGayOpen, setWhyGayOpen] = useState(false)
 
   const food = foods[index]
   const reason: Reason | null = step === 'reveal' ? reasonFor(name, food.id) : null
@@ -25,6 +30,12 @@ export default function App() {
     }
   }, [step, food])
 
+  function beginReveal(nextName: string) {
+    setName(nextName)
+    setIndex(0)
+    setStep('reveal')
+  }
+
   function start(e: FormEvent) {
     e.preventDefault()
     const next = draft.trim()
@@ -37,9 +48,17 @@ export default function App() {
       return
     }
     setError('')
-    setName(next)
-    setIndex(0)
-    setStep('reveal')
+    if (isDarragh(next)) {
+      setName(next)
+      setWhyGayOpen(true)
+      return
+    }
+    beginReveal(next)
+  }
+
+  function confessGay() {
+    setWhyGayOpen(false)
+    beginReveal(name || draft.trim())
   }
 
   function nextFood() {
@@ -56,6 +75,7 @@ export default function App() {
     setName('')
     setIndex(0)
     setError('')
+    setWhyGayOpen(false)
   }
 
   return (
@@ -260,6 +280,26 @@ export default function App() {
       <footer className="app-footer hide-when-short mt-3 shrink-0 text-center text-sm text-[var(--grill)]/50">
         Static meme toy · no accounts · no database · photos via Wikimedia Commons
       </footer>
+
+      {whyGayOpen && (
+        <div className="why-gay-overlay" role="dialog" aria-modal="true" aria-labelledby="why-gay-title">
+          <div className="why-gay-card">
+            <img
+              className="why-gay-img"
+              src="/memes/why-are-you-gay.jpg"
+              alt="Why are you gay meme"
+              draggable={false}
+            />
+            <h2 id="why-gay-title" className="why-gay-title">
+              Why are you gay?
+            </h2>
+            <p className="why-gay-sub">Darragh detected. There is only one acceptable answer.</p>
+            <button type="button" className="why-gay-btn" onClick={confessGay}>
+              I AM GAY
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

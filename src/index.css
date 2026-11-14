@@ -83,13 +83,91 @@ body::before {
   font-size: 16px;
 }
 
-@media (max-height: 700px) {
+@media (orientation: portrait) and (max-width: 640px) {
+  .touch-btn {
+    min-height: 56px;
+    font-size: 1.125rem;
+  }
+
+  .no-zoom-input {
+    font-size: 18px;
+    min-height: 56px;
+  }
+
+  .brand-hero {
+    font-size: clamp(3rem, 14vw, 4.25rem) !important;
+  }
+
+  .brand-sub {
+    font-size: clamp(1.35rem, 5.5vw, 1.75rem) !important;
+  }
+
+  .body-copy {
+    font-size: 1.05rem !important;
+  }
+
+  .field-label {
+    font-size: 0.95rem !important;
+  }
+
+  .reveal-brand {
+    font-size: clamp(1.85rem, 7vw, 2.4rem) !important;
+  }
+
+  .reveal-meta {
+    font-size: 1rem !important;
+  }
+
+  .reveal-food {
+    font-size: clamp(2.1rem, 9vw, 2.8rem) !important;
+  }
+
+  .reveal-verdict {
+    font-size: clamp(1.2rem, 4.5vw, 1.45rem) !important;
+  }
+
+  .reveal-stamp {
+    font-size: 1.85rem !important;
+    padding: 0.65rem 0.9rem !important;
+  }
+
+  .summary-brand {
+    font-size: clamp(2.5rem, 11vw, 3.5rem) !important;
+  }
+
+  .summary-title {
+    font-size: clamp(1.65rem, 6.5vw, 2.15rem) !important;
+  }
+
+  .summary-score {
+    font-size: 3.25rem !important;
+  }
+
+  .summary-score-label {
+    font-size: 1.25rem !important;
+  }
+
+  .summary-line {
+    font-size: 1.25rem !important;
+  }
+
+  .link-btn {
+    font-size: 1rem !important;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 700px) {
   .hide-when-short {
     display: none;
   }
 }
 
 @media (orientation: landscape) and (max-height: 500px) {
+  .touch-btn {
+    min-height: 44px;
+    font-size: inherit;
+  }
+
   .reveal-landscape {
     display: grid;
     grid-template-columns: 1fr 1fr;

@@ -1,12 +1,12 @@
-# Shape or Taste?
+# Taste or Shape?
 
-A tiny static meme site: enter your name, flip through 25 suspiciously shaped foods (hot dogs, sausages, bananas, and friends), and learn whether you like each one **for the shape** or **for the taste**.
+A tiny static meme site: enter your name, flip through 25 suspiciously shaped foods (hot dogs, sausages, bananas, and friends), and learn whether you like each one **for the taste** or **for the shape**.
 
 No database. No auth. No APIs. Just a Vite + React front end you can host anywhere static files go.
 
 ## Rules
 
-- Each name gets a **deterministic** shape/taste pick per food (same name → same results).
+- Each name gets a **deterministic** taste/shape pick per food (same name → same results).
 - If the name **starts with D** (any case), every food is **because of the shape**.
 
 ## Run locally

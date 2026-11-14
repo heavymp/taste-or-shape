@@ -61,26 +61,22 @@ export default function App() {
   return (
     <div className="app-shell mx-auto flex h-dvh max-h-dvh w-full flex-col overflow-hidden">
       {step === 'intro' && (
-        <section className="flex min-h-0 flex-1 flex-col justify-center overflow-hidden animate-slide-up">
-          <p
-            className="brand-hero font-display leading-none text-[var(--ketchup)]"
-            style={{ fontSize: 'clamp(2.5rem, 8vw, 5.5rem)' }}
-          >
-            Taste or Shape?
-          </p>
-          <h1
-            className="brand-sub mt-3 max-w-xl font-extrabold tracking-tight text-[var(--ink)]"
-            style={{ fontSize: 'clamp(1.25rem, 3.5vw, 1.875rem)' }}
-          >
-            The scientific* ranking of suspiciously shaped snacks.
-          </h1>
-          <p className="body-copy hide-when-short mt-3 max-w-md text-base text-[var(--grill)]/80 sm:text-lg">
-            Enter your name. We’ll go through {foods.length} iconic foods and tell you —
-            for each one — whether you like it for the taste or the shape.
-          </p>
-          <p className="hide-when-short mt-1 text-sm italic text-[var(--grill)]/55">*not scientific</p>
+        <section className="intro-screen flex min-h-0 flex-1 flex-col overflow-hidden animate-slide-up">
+          <div className="intro-top">
+            <p className="intro-brand brand-hero font-display leading-none text-[var(--ketchup)]">
+              Taste or Shape?
+            </p>
+            <h1 className="intro-headline brand-sub mt-3 max-w-xl font-extrabold tracking-tight text-[var(--ink)]">
+              The scientific* ranking of suspiciously shaped snacks.
+            </h1>
+            <p className="intro-copy body-copy hide-when-short mt-3 max-w-md text-base text-[var(--grill)]/80 sm:text-lg">
+              Enter your name. We’ll go through {foods.length} iconic foods and tell you —
+              for each one — whether you like it for the taste or the shape.
+            </p>
+            <p className="hide-when-short mt-1 text-sm italic text-[var(--grill)]/55">*not scientific</p>
+          </div>
 
-          <form onSubmit={start} className="intro-form mt-5 flex w-full flex-col gap-2">
+          <form onSubmit={start} className="intro-form flex w-full flex-col gap-2">
             <label
               htmlFor="name"
               className="field-label text-sm font-bold uppercase tracking-wide text-[var(--grill)]"
@@ -103,7 +99,7 @@ export default function App() {
             {error && <p className="text-base font-bold text-[var(--ketchup)]">{error}</p>}
             <button
               type="submit"
-              className="touch-btn mt-2 inline-flex w-full items-center justify-center rounded-2xl border-[3px] border-[var(--ink)] bg-[var(--mustard)] px-6 py-3 text-2xl font-extrabold shadow-[4px_4px_0_var(--ink)] transition hover:-translate-y-0.5 hover:shadow-[6px_6px_0_var(--ink)] active:translate-y-0.5 active:shadow-[2px_2px_0_var(--ink)]"
+              className="touch-btn mt-1 inline-flex w-full items-center justify-center rounded-2xl border-[3px] border-[var(--ink)] bg-[var(--mustard)] px-6 py-3 text-2xl font-extrabold shadow-[4px_4px_0_var(--ink)] transition hover:-translate-y-0.5 hover:shadow-[6px_6px_0_var(--ink)] active:translate-y-0.5 active:shadow-[2px_2px_0_var(--ink)]"
             >
               Next →
             </button>
@@ -114,16 +110,11 @@ export default function App() {
       {step === 'reveal' && reason && (
         <section
           key={food.id}
-          className="reveal-landscape flex min-h-0 flex-1 flex-col overflow-hidden animate-pop"
+          className="reveal-screen reveal-landscape flex min-h-0 flex-1 flex-col overflow-hidden animate-pop"
         >
           <header className="reveal-header mb-2 flex shrink-0 items-end justify-between gap-3">
             <div>
-              <p
-                className="reveal-brand font-display text-[var(--ketchup)]"
-                style={{ fontSize: 'clamp(1.5rem, 4vw, 2.25rem)' }}
-              >
-                Taste or Shape?
-              </p>
+              <p className="reveal-brand font-display text-[var(--ketchup)]">Taste or Shape?</p>
               <p className="reveal-meta mt-1 text-base font-bold text-[var(--grill)]/70">
                 Hey <span className="text-[var(--ink)]">{name}</span> — {index + 1}/{foods.length}
               </p>
@@ -141,7 +132,7 @@ export default function App() {
             <img
               src={food.image}
               alt={food.name}
-              className="h-full w-full object-cover"
+              className="reveal-photo h-full w-full object-cover"
               loading="eager"
               draggable={false}
               decoding="async"
@@ -158,13 +149,8 @@ export default function App() {
           </div>
 
           <div className="reveal-copy mt-3 shrink-0 animate-slide-up">
-            <h2
-              className="reveal-food font-display text-[var(--ink)]"
-              style={{ fontSize: 'clamp(1.75rem, 5vw, 3rem)' }}
-            >
-              {food.name}
-            </h2>
-            <p className="body-copy hide-when-short mt-1 text-base text-[var(--grill)]/75 sm:text-lg">
+            <h2 className="reveal-food font-display text-[var(--ink)]">{food.name}</h2>
+            <p className="body-copy reveal-blurb hide-when-short mt-1 text-base text-[var(--grill)]/75 sm:text-lg">
               {food.blurb}
             </p>
             <p className="reveal-verdict mt-3 text-xl font-extrabold leading-snug sm:text-2xl">
@@ -181,79 +167,75 @@ export default function App() {
             )}
           </div>
 
-          <div className="reveal-actions mt-4 flex shrink-0 gap-2">
-            {index > 0 && (
+          <div className="reveal-dock shrink-0">
+            <div className="reveal-actions mt-4 flex shrink-0 gap-2">
+              {index > 0 && (
+                <button
+                  type="button"
+                  onClick={() => setIndex((i) => i - 1)}
+                  aria-label="Back"
+                  className="touch-btn inline-flex min-w-14 items-center justify-center rounded-2xl border-[3px] border-[var(--ink)] bg-white/80 px-3 text-2xl font-bold"
+                >
+                  ←
+                </button>
+              )}
               <button
                 type="button"
-                onClick={() => setIndex((i) => i - 1)}
-                aria-label="Back"
-                className="touch-btn inline-flex min-w-14 items-center justify-center rounded-2xl border-[3px] border-[var(--ink)] bg-white/80 px-3 text-2xl font-bold"
+                onClick={nextFood}
+                className="touch-btn inline-flex flex-1 items-center justify-center rounded-2xl border-[3px] border-[var(--ink)] bg-[var(--mustard)] px-6 py-2.5 text-xl font-extrabold shadow-[4px_4px_0_var(--ink)] transition hover:-translate-y-0.5 hover:shadow-[6px_6px_0_var(--ink)] active:translate-y-0.5 active:shadow-[2px_2px_0_var(--ink)] sm:text-2xl"
               >
-                ←
+                {index >= foods.length - 1 ? 'See my verdict →' : 'Next food →'}
               </button>
-            )}
-            <button
-              type="button"
-              onClick={nextFood}
-              className="touch-btn inline-flex flex-1 items-center justify-center rounded-2xl border-[3px] border-[var(--ink)] bg-[var(--mustard)] px-6 py-2.5 text-xl font-extrabold shadow-[4px_4px_0_var(--ink)] transition hover:-translate-y-0.5 hover:shadow-[6px_6px_0_var(--ink)] active:translate-y-0.5 active:shadow-[2px_2px_0_var(--ink)] sm:text-2xl"
-            >
-              {index >= foods.length - 1 ? 'See my verdict →' : 'Next food →'}
-            </button>
-          </div>
+            </div>
 
-          <div className="reveal-progress mt-3 h-2 shrink-0 overflow-hidden rounded-full bg-black/10">
-            <div
-              className="h-full rounded-full bg-[var(--ketchup)] transition-all duration-300"
-              style={{ width: `${((index + 1) / foods.length) * 100}%` }}
-            />
+            <div className="reveal-progress mt-3 h-2 shrink-0 overflow-hidden rounded-full bg-black/10">
+              <div
+                className="h-full rounded-full bg-[var(--ketchup)] transition-all duration-300"
+                style={{ width: `${((index + 1) / foods.length) * 100}%` }}
+              />
+            </div>
           </div>
         </section>
       )}
 
       {step === 'summary' && totals && (
-        <section className="flex min-h-0 flex-1 flex-col justify-center overflow-hidden animate-slide-up">
-          <p
-            className="summary-brand font-display text-[var(--ketchup)]"
-            style={{ fontSize: 'clamp(2rem, 6vw, 3.75rem)' }}
-          >
-            Taste or Shape?
-          </p>
-          <h2
-            className="summary-title mt-3 font-extrabold"
-            style={{ fontSize: 'clamp(1.5rem, 4vw, 2.25rem)' }}
-          >
-            Okay, {name}. Here’s the damage.
-          </h2>
-          <p className="body-copy hide-when-short mt-2 max-w-lg text-base text-[var(--grill)]/80 sm:text-lg">
-            Across {foods.length} phallic-adjacent foods, your personal algorithm landed here:
-          </p>
+        <section className="summary-screen flex min-h-0 flex-1 flex-col overflow-hidden animate-slide-up">
+          <div className="summary-top">
+            <p className="summary-brand font-display text-[var(--ketchup)]">Taste or Shape?</p>
+            <h2 className="summary-title mt-3 font-extrabold">
+              Okay, {name}. Here’s the damage.
+            </h2>
+            <p className="body-copy hide-when-short mt-2 max-w-lg text-base text-[var(--grill)]/80 sm:text-lg">
+              Across {foods.length} phallic-adjacent foods, your personal algorithm landed here:
+            </p>
 
-          <div className="mt-4 grid grid-cols-2 gap-3">
-            <div className="rounded-2xl border-[3px] border-[var(--ink)] bg-[#fff3e6] p-4 shadow-[4px_4px_0_var(--ink)]">
-              <p className="summary-score font-display text-4xl text-[var(--shape)] sm:text-5xl">
-                {totals.shape}
-              </p>
-              <p className="summary-score-label mt-1 text-xl font-extrabold">for the shape</p>
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              <div className="rounded-2xl border-[3px] border-[var(--ink)] bg-[#fff3e6] p-4 shadow-[4px_4px_0_var(--ink)]">
+                <p className="summary-score font-display text-4xl text-[var(--shape)] sm:text-5xl">
+                  {totals.shape}
+                </p>
+                <p className="summary-score-label mt-1 text-xl font-extrabold">for the shape</p>
+              </div>
+              <div className="rounded-2xl border-[3px] border-[var(--ink)] bg-[#e8f7f4] p-4 shadow-[4px_4px_0_var(--ink)]">
+                <p className="summary-score font-display text-4xl text-[var(--taste)] sm:text-5xl">
+                  {totals.taste}
+                </p>
+                <p className="summary-score-label mt-1 text-xl font-extrabold">for the taste</p>
+              </div>
             </div>
-            <div className="rounded-2xl border-[3px] border-[var(--ink)] bg-[#e8f7f4] p-4 shadow-[4px_4px_0_var(--ink)]">
-              <p className="summary-score font-display text-4xl text-[var(--taste)] sm:text-5xl">
-                {totals.taste}
-              </p>
-              <p className="summary-score-label mt-1 text-xl font-extrabold">for the taste</p>
-            </div>
+
+            <p className="summary-line mt-4 text-xl font-extrabold sm:text-2xl">
+              {dRule
+                ? 'D-name confirmed: pure shape energy. No notes.'
+                : totals.shape > totals.taste
+                  ? 'You’re here for the geometry.'
+                  : totals.taste > totals.shape
+                    ? 'You’re claiming it’s the flavor. Sure.'
+                    : 'Perfectly split. Diplomacy is boring, but fine.'}
+            </p>
           </div>
 
-          <p className="summary-line mt-4 text-xl font-extrabold sm:text-2xl">
-            {dRule
-              ? 'D-name confirmed: pure shape energy. No notes.'
-              : totals.shape > totals.taste
-                ? 'You’re here for the geometry.'
-                : totals.taste > totals.shape
-                  ? 'You’re claiming it’s the flavor. Sure.'
-                  : 'Perfectly split. Diplomacy is boring, but fine.'}
-          </p>
-
-          <div className="mt-4 flex w-full flex-col gap-3">
+          <div className="summary-actions mt-4 flex w-full flex-col gap-3">
             <button
               type="button"
               onClick={() => {
@@ -275,7 +257,7 @@ export default function App() {
         </section>
       )}
 
-      <footer className="hide-when-short mt-3 shrink-0 text-center text-sm text-[var(--grill)]/50">
+      <footer className="app-footer hide-when-short mt-3 shrink-0 text-center text-sm text-[var(--grill)]/50">
         Static meme toy · no accounts · no database · photos via Wikimedia Commons
       </footer>
     </div>

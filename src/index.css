@@ -69,10 +69,40 @@ body::before {
 }
 
 .app-shell {
+  max-width: 42rem;
   padding-top: max(0.75rem, var(--safe-top));
   padding-right: max(1rem, var(--safe-right));
   padding-bottom: max(0.75rem, var(--safe-bottom));
   padding-left: max(1rem, var(--safe-left));
+}
+
+.intro-screen,
+.summary-screen {
+  justify-content: center;
+}
+
+.intro-brand {
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
+}
+
+.intro-headline {
+  font-size: clamp(1.25rem, 3.5vw, 1.875rem);
+}
+
+.reveal-brand {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+.reveal-food {
+  font-size: clamp(1.75rem, 5vw, 3rem);
+}
+
+.summary-brand {
+  font-size: clamp(2rem, 6vw, 3.75rem);
+}
+
+.summary-title {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
 }
 
 .touch-btn {
@@ -83,6 +113,7 @@ body::before {
   font-size: 16px;
 }
 
+/* —— Portrait mobile-app layout —— */
 @media (orientation: portrait) and (max-width: 900px) {
   .app-shell {
     max-width: none;
@@ -93,27 +124,49 @@ body::before {
     padding-left: max(1.25rem, var(--safe-left));
   }
 
+  .app-footer {
+    display: none;
+  }
+
   .touch-btn {
-    min-height: 60px;
-    font-size: 1.2rem;
+    min-height: 64px;
+    font-size: 1.25rem;
     border-width: 3px;
   }
 
   .no-zoom-input {
     font-size: 18px;
-    min-height: 60px;
+    min-height: 64px;
   }
 
-  .brand-hero {
-    font-size: clamp(3.4rem, 16vw, 5rem) !important;
+  /* Intro: brand up top, form docked bottom */
+  .intro-screen {
+    justify-content: space-between;
+    gap: 1.25rem;
   }
 
-  .brand-sub {
-    font-size: clamp(1.5rem, 6vw, 1.9rem) !important;
+  .intro-top {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 0;
+  }
+
+  .intro-brand {
+    font-size: clamp(3.6rem, 17vw, 5.2rem) !important;
+  }
+
+  .intro-headline {
+    font-size: clamp(1.55rem, 6.5vw, 2rem) !important;
+  }
+
+  .intro-copy {
+    font-size: 1.2rem !important;
   }
 
   .body-copy {
-    font-size: 1.15rem !important;
+    font-size: 1.2rem !important;
   }
 
   .field-label {
@@ -121,26 +174,62 @@ body::before {
   }
 
   .intro-form {
+    flex: 0 0 auto;
     max-width: none;
     width: 100%;
+    margin-top: 0;
   }
 
-  .reveal-media {
-    flex: 0 1 auto;
-    min-height: 34dvh;
-    max-height: 42dvh;
+  /* Reveal: compact header, fixed media, centered copy, docked actions */
+  .reveal-screen {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .reveal-header {
+    margin-bottom: 0.5rem;
   }
 
   .reveal-brand {
-    font-size: clamp(2rem, 8vw, 2.6rem) !important;
+    font-size: clamp(1.6rem, 7vw, 2.1rem) !important;
   }
 
   .reveal-meta {
-    font-size: 1.1rem !important;
+    font-size: 1.05rem !important;
+  }
+
+  .link-btn {
+    min-height: 44px !important;
+    font-size: 1.05rem !important;
+  }
+
+  .reveal-media {
+    flex: 0 0 auto;
+    height: min(34dvh, 280px);
+    min-height: min(34dvh, 280px);
+    max-height: min(34dvh, 280px);
+  }
+
+  .reveal-photo {
+    object-fit: contain !important;
+  }
+
+  .reveal-copy {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 0;
+    margin-top: 0.75rem;
+  }
+
+  .reveal-blurb {
+    display: none;
   }
 
   .reveal-food {
-    font-size: clamp(2.3rem, 10vw, 3rem) !important;
+    font-size: clamp(2.4rem, 11vw, 3.2rem) !important;
   }
 
   .reveal-verdict {
@@ -148,8 +237,35 @@ body::before {
   }
 
   .reveal-stamp {
-    font-size: 2rem !important;
-    padding: 0.7rem 1rem !important;
+    font-size: 1.75rem !important;
+    padding: 0.55rem 0.85rem !important;
+  }
+
+  .reveal-dock {
+    flex: 0 0 auto;
+    margin-top: auto;
+  }
+
+  .reveal-actions {
+    margin-top: 0.75rem;
+  }
+
+  .reveal-progress {
+    margin-top: 0.75rem;
+  }
+
+  /* Summary: content top, actions docked bottom */
+  .summary-screen {
+    justify-content: space-between;
+    gap: 1.25rem;
+  }
+
+  .summary-top {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 0;
   }
 
   .summary-brand {
@@ -172,8 +288,10 @@ body::before {
     font-size: 1.35rem !important;
   }
 
-  .link-btn {
-    font-size: 1.05rem !important;
+  .summary-actions {
+    flex: 0 0 auto;
+    margin-top: 0;
+    width: 100%;
   }
 }
 
@@ -192,7 +310,7 @@ body::before {
   .reveal-landscape {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto 1fr auto auto;
+    grid-template-rows: auto 1fr auto;
     gap: 0.5rem 0.75rem;
     align-content: stretch;
   }
@@ -204,27 +322,37 @@ body::before {
 
   .reveal-landscape .reveal-media {
     grid-column: 1;
-    grid-row: 2 / 5;
+    grid-row: 2 / 4;
     min-height: 0;
     max-height: none;
+    height: auto;
     flex: 1;
+  }
+
+  .reveal-landscape .reveal-photo {
+    object-fit: cover;
   }
 
   .reveal-landscape .reveal-copy {
     grid-column: 2;
     grid-row: 2;
     margin-top: 0;
+    display: block;
+  }
+
+  .reveal-landscape .reveal-dock {
+    grid-column: 2;
+    grid-row: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   .reveal-landscape .reveal-actions {
-    grid-column: 2;
-    grid-row: 3;
     margin-top: 0;
   }
 
   .reveal-landscape .reveal-progress {
-    grid-column: 2;
-    grid-row: 4;
     margin-top: 0;
   }
 }

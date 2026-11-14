@@ -59,7 +59,7 @@ export default function App() {
   }
 
   return (
-    <div className="app-shell mx-auto flex h-dvh max-h-dvh w-full max-w-3xl flex-col overflow-hidden sm:px-6 sm:py-5">
+    <div className="app-shell mx-auto flex h-dvh max-h-dvh w-full flex-col overflow-hidden">
       {step === 'intro' && (
         <section className="flex min-h-0 flex-1 flex-col justify-center overflow-hidden animate-slide-up">
           <p
@@ -74,13 +74,13 @@ export default function App() {
           >
             The scientific* ranking of suspiciously shaped snacks.
           </h1>
-          <p className="body-copy hide-when-short mt-3 max-w-md text-sm text-[var(--grill)]/80 sm:text-base">
+          <p className="body-copy hide-when-short mt-3 max-w-md text-base text-[var(--grill)]/80 sm:text-lg">
             Enter your name. We’ll go through {foods.length} iconic foods and tell you —
             for each one — whether you like it for the taste or the shape.
           </p>
-          <p className="hide-when-short mt-1 text-xs italic text-[var(--grill)]/55">*not scientific</p>
+          <p className="hide-when-short mt-1 text-sm italic text-[var(--grill)]/55">*not scientific</p>
 
-          <form onSubmit={start} className="mt-5 flex w-full max-w-md flex-col gap-2">
+          <form onSubmit={start} className="intro-form mt-5 flex w-full flex-col gap-2">
             <label
               htmlFor="name"
               className="field-label text-sm font-bold uppercase tracking-wide text-[var(--grill)]"
@@ -98,12 +98,12 @@ export default function App() {
                 if (error) setError('')
               }}
               placeholder="e.g. Dana, Marcus, Pickle Pete"
-              className="no-zoom-input w-full rounded-xl border-2 border-[var(--ink)] bg-white/90 px-4 py-3 font-bold outline-none ring-[var(--mustard)] transition focus:ring-4 sm:text-lg"
+              className="no-zoom-input w-full rounded-2xl border-[3px] border-[var(--ink)] bg-white/90 px-4 py-3 text-lg font-bold outline-none ring-[var(--mustard)] transition focus:ring-4 sm:text-xl"
             />
-            {error && <p className="text-sm font-bold text-[var(--ketchup)]">{error}</p>}
+            {error && <p className="text-base font-bold text-[var(--ketchup)]">{error}</p>}
             <button
               type="submit"
-              className="touch-btn mt-2 inline-flex w-full items-center justify-center rounded-xl border-2 border-[var(--ink)] bg-[var(--mustard)] px-6 py-3 text-xl font-extrabold shadow-[4px_4px_0_var(--ink)] transition hover:-translate-y-0.5 hover:shadow-[6px_6px_0_var(--ink)] active:translate-y-0.5 active:shadow-[2px_2px_0_var(--ink)]"
+              className="touch-btn mt-2 inline-flex w-full items-center justify-center rounded-2xl border-[3px] border-[var(--ink)] bg-[var(--mustard)] px-6 py-3 text-2xl font-extrabold shadow-[4px_4px_0_var(--ink)] transition hover:-translate-y-0.5 hover:shadow-[6px_6px_0_var(--ink)] active:translate-y-0.5 active:shadow-[2px_2px_0_var(--ink)]"
             >
               Next →
             </button>
@@ -124,20 +124,20 @@ export default function App() {
               >
                 Taste or Shape?
               </p>
-              <p className="reveal-meta mt-1 text-sm font-bold text-[var(--grill)]/70">
+              <p className="reveal-meta mt-1 text-base font-bold text-[var(--grill)]/70">
                 Hey <span className="text-[var(--ink)]">{name}</span> — {index + 1}/{foods.length}
               </p>
             </div>
             <button
               type="button"
               onClick={reset}
-              className="link-btn touch-btn shrink-0 text-sm font-bold underline decoration-2 underline-offset-2 opacity-70 hover:opacity-100"
+              className="link-btn touch-btn shrink-0 text-base font-bold underline decoration-2 underline-offset-2 opacity-70 hover:opacity-100"
             >
               Start over
             </button>
           </header>
 
-          <div className="reveal-media relative min-h-0 flex-1 overflow-hidden rounded-2xl border-2 border-[var(--ink)] bg-[var(--grill)] shadow-[6px_6px_0_var(--ink)]">
+          <div className="reveal-media relative min-h-0 flex-1 overflow-hidden rounded-2xl border-[3px] border-[var(--ink)] bg-[var(--grill)] shadow-[6px_6px_0_var(--ink)]">
             <img
               src={food.image}
               alt={food.name}
@@ -164,10 +164,10 @@ export default function App() {
             >
               {food.name}
             </h2>
-            <p className="body-copy hide-when-short mt-1 text-sm text-[var(--grill)]/75 sm:text-base">
+            <p className="body-copy hide-when-short mt-1 text-base text-[var(--grill)]/75 sm:text-lg">
               {food.blurb}
             </p>
-            <p className="reveal-verdict mt-3 text-lg font-extrabold leading-snug sm:text-xl">
+            <p className="reveal-verdict mt-3 text-xl font-extrabold leading-snug sm:text-2xl">
               {name}, you like the {food.name.toLowerCase()} because of the{' '}
               <span className={reason === 'shape' ? 'text-[var(--shape)]' : 'text-[var(--taste)]'}>
                 {reason}
@@ -175,7 +175,7 @@ export default function App() {
               .
             </p>
             {dRule && (
-              <p className="mt-1 text-sm font-bold text-[var(--shape)]">
+              <p className="mt-1 text-base font-bold text-[var(--shape)]">
                 D-name privilege: it’s always the shape for you.
               </p>
             )}
@@ -187,7 +187,7 @@ export default function App() {
                 type="button"
                 onClick={() => setIndex((i) => i - 1)}
                 aria-label="Back"
-                className="touch-btn inline-flex min-w-14 items-center justify-center rounded-xl border-2 border-[var(--ink)] bg-white/80 px-3 text-xl font-bold"
+                className="touch-btn inline-flex min-w-14 items-center justify-center rounded-2xl border-[3px] border-[var(--ink)] bg-white/80 px-3 text-2xl font-bold"
               >
                 ←
               </button>
@@ -195,7 +195,7 @@ export default function App() {
             <button
               type="button"
               onClick={nextFood}
-              className="touch-btn inline-flex flex-1 items-center justify-center rounded-xl border-2 border-[var(--ink)] bg-[var(--mustard)] px-6 py-2.5 text-lg font-extrabold shadow-[4px_4px_0_var(--ink)] transition hover:-translate-y-0.5 hover:shadow-[6px_6px_0_var(--ink)] active:translate-y-0.5 active:shadow-[2px_2px_0_var(--ink)] sm:text-xl"
+              className="touch-btn inline-flex flex-1 items-center justify-center rounded-2xl border-[3px] border-[var(--ink)] bg-[var(--mustard)] px-6 py-2.5 text-xl font-extrabold shadow-[4px_4px_0_var(--ink)] transition hover:-translate-y-0.5 hover:shadow-[6px_6px_0_var(--ink)] active:translate-y-0.5 active:shadow-[2px_2px_0_var(--ink)] sm:text-2xl"
             >
               {index >= foods.length - 1 ? 'See my verdict →' : 'Next food →'}
             </button>
@@ -224,26 +224,26 @@ export default function App() {
           >
             Okay, {name}. Here’s the damage.
           </h2>
-          <p className="body-copy hide-when-short mt-2 max-w-lg text-sm text-[var(--grill)]/80 sm:text-base">
+          <p className="body-copy hide-when-short mt-2 max-w-lg text-base text-[var(--grill)]/80 sm:text-lg">
             Across {foods.length} phallic-adjacent foods, your personal algorithm landed here:
           </p>
 
           <div className="mt-4 grid grid-cols-2 gap-3">
-            <div className="rounded-2xl border-2 border-[var(--ink)] bg-[#fff3e6] p-4 shadow-[4px_4px_0_var(--ink)]">
+            <div className="rounded-2xl border-[3px] border-[var(--ink)] bg-[#fff3e6] p-4 shadow-[4px_4px_0_var(--ink)]">
               <p className="summary-score font-display text-4xl text-[var(--shape)] sm:text-5xl">
                 {totals.shape}
               </p>
-              <p className="summary-score-label mt-1 text-lg font-extrabold">for the shape</p>
+              <p className="summary-score-label mt-1 text-xl font-extrabold">for the shape</p>
             </div>
-            <div className="rounded-2xl border-2 border-[var(--ink)] bg-[#e8f7f4] p-4 shadow-[4px_4px_0_var(--ink)]">
+            <div className="rounded-2xl border-[3px] border-[var(--ink)] bg-[#e8f7f4] p-4 shadow-[4px_4px_0_var(--ink)]">
               <p className="summary-score font-display text-4xl text-[var(--taste)] sm:text-5xl">
                 {totals.taste}
               </p>
-              <p className="summary-score-label mt-1 text-lg font-extrabold">for the taste</p>
+              <p className="summary-score-label mt-1 text-xl font-extrabold">for the taste</p>
             </div>
           </div>
 
-          <p className="summary-line mt-4 text-lg font-extrabold sm:text-xl">
+          <p className="summary-line mt-4 text-xl font-extrabold sm:text-2xl">
             {dRule
               ? 'D-name confirmed: pure shape energy. No notes.'
               : totals.shape > totals.taste
@@ -260,14 +260,14 @@ export default function App() {
                 setIndex(0)
                 setStep('reveal')
               }}
-              className="touch-btn w-full rounded-xl border-2 border-[var(--ink)] bg-white/90 px-5 py-3 text-lg font-bold"
+              className="touch-btn w-full rounded-2xl border-[3px] border-[var(--ink)] bg-white/90 px-5 py-3 text-xl font-bold"
             >
               Replay foods
             </button>
             <button
               type="button"
               onClick={reset}
-              className="touch-btn w-full rounded-xl border-2 border-[var(--ink)] bg-[var(--mustard)] px-5 py-3 text-lg font-extrabold shadow-[4px_4px_0_var(--ink)]"
+              className="touch-btn w-full rounded-2xl border-[3px] border-[var(--ink)] bg-[var(--mustard)] px-5 py-3 text-xl font-extrabold shadow-[4px_4px_0_var(--ink)]"
             >
               Try another name
             </button>
@@ -275,7 +275,7 @@ export default function App() {
         </section>
       )}
 
-      <footer className="hide-when-short mt-3 shrink-0 text-center text-xs text-[var(--grill)]/50">
+      <footer className="hide-when-short mt-3 shrink-0 text-center text-sm text-[var(--grill)]/50">
         Static meme toy · no accounts · no database · photos via Wikimedia Commons
       </footer>
     </div>

@@ -83,76 +83,97 @@ body::before {
   font-size: 16px;
 }
 
-@media (orientation: portrait) and (max-width: 640px) {
+@media (orientation: portrait) and (max-width: 900px) {
+  .app-shell {
+    max-width: none;
+    width: 100%;
+    padding-top: max(1rem, var(--safe-top));
+    padding-right: max(1.25rem, var(--safe-right));
+    padding-bottom: max(1rem, var(--safe-bottom));
+    padding-left: max(1.25rem, var(--safe-left));
+  }
+
   .touch-btn {
-    min-height: 56px;
-    font-size: 1.125rem;
+    min-height: 60px;
+    font-size: 1.2rem;
+    border-width: 3px;
   }
 
   .no-zoom-input {
     font-size: 18px;
-    min-height: 56px;
+    min-height: 60px;
   }
 
   .brand-hero {
-    font-size: clamp(3rem, 14vw, 4.25rem) !important;
+    font-size: clamp(3.4rem, 16vw, 5rem) !important;
   }
 
   .brand-sub {
-    font-size: clamp(1.35rem, 5.5vw, 1.75rem) !important;
+    font-size: clamp(1.5rem, 6vw, 1.9rem) !important;
   }
 
   .body-copy {
-    font-size: 1.05rem !important;
+    font-size: 1.15rem !important;
   }
 
   .field-label {
-    font-size: 0.95rem !important;
+    font-size: 1rem !important;
+  }
+
+  .intro-form {
+    max-width: none;
+    width: 100%;
+  }
+
+  .reveal-media {
+    flex: 0 1 auto;
+    min-height: 34dvh;
+    max-height: 42dvh;
   }
 
   .reveal-brand {
-    font-size: clamp(1.85rem, 7vw, 2.4rem) !important;
+    font-size: clamp(2rem, 8vw, 2.6rem) !important;
   }
 
   .reveal-meta {
-    font-size: 1rem !important;
+    font-size: 1.1rem !important;
   }
 
   .reveal-food {
-    font-size: clamp(2.1rem, 9vw, 2.8rem) !important;
+    font-size: clamp(2.3rem, 10vw, 3rem) !important;
   }
 
   .reveal-verdict {
-    font-size: clamp(1.2rem, 4.5vw, 1.45rem) !important;
+    font-size: clamp(1.3rem, 5vw, 1.55rem) !important;
   }
 
   .reveal-stamp {
-    font-size: 1.85rem !important;
-    padding: 0.65rem 0.9rem !important;
+    font-size: 2rem !important;
+    padding: 0.7rem 1rem !important;
   }
 
   .summary-brand {
-    font-size: clamp(2.5rem, 11vw, 3.5rem) !important;
+    font-size: clamp(2.7rem, 12vw, 3.75rem) !important;
   }
 
   .summary-title {
-    font-size: clamp(1.65rem, 6.5vw, 2.15rem) !important;
+    font-size: clamp(1.75rem, 7vw, 2.3rem) !important;
   }
 
   .summary-score {
-    font-size: 3.25rem !important;
+    font-size: 3.5rem !important;
   }
 
   .summary-score-label {
-    font-size: 1.25rem !important;
+    font-size: 1.35rem !important;
   }
 
   .summary-line {
-    font-size: 1.25rem !important;
+    font-size: 1.35rem !important;
   }
 
   .link-btn {
-    font-size: 1rem !important;
+    font-size: 1.05rem !important;
   }
 }
 
@@ -185,6 +206,8 @@ body::before {
     grid-column: 1;
     grid-row: 2 / 5;
     min-height: 0;
+    max-height: none;
+    flex: 1;
   }
 
   .reveal-landscape .reveal-copy {

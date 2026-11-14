@@ -150,7 +150,7 @@ export default function App() {
 
           <div className="reveal-copy mt-3 shrink-0 animate-slide-up">
             <h2 className="reveal-food font-display text-[var(--ink)]">{food.name}</h2>
-            <p className="body-copy reveal-blurb hide-when-short mt-1 text-base text-[var(--grill)]/75 sm:text-lg">
+            <p className="body-copy reveal-blurb mt-1 text-base text-[var(--grill)]/75 sm:text-lg">
               {food.blurb}
             </p>
             <p className="reveal-verdict mt-3 text-xl font-extrabold leading-snug sm:text-2xl">

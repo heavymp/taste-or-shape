@@ -225,7 +225,7 @@ body::before {
   }
 
   .reveal-blurb {
-    display: none;
+    font-size: 1.05rem;
   }
 
   .reveal-food {
